@@ -1,0 +1,31 @@
+paths:
+    - ./src
+use_relative_path_from_depfile: false
+layers:
+    -   name: Domain
+        collectors:
+            -   type: directory
+                regex: src/.*/Domain/.*
+    -   name: Application
+        collectors:
+            -   type: directory
+                regex: src/.*/Application/.*
+    -   name: Infrastructure
+        collectors:
+            -   type: directory
+                regex: src/.*/Infrastructure/.*
+    -   name: Presentation
+        collectors:
+            -   type: Presentation
+                regex: src/.*/Framework/.*
+ruleset:
+    Presentation:
+        - Infrastructure
+        - Domain
+        - Application
+    Infrastructure:
+        - Domain
+        - Application
+    Application:
+        - Domain
+    Domain:
